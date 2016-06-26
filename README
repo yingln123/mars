@@ -1,0 +1,2 @@
+Mars 是 负责项目集成的一个项目
+以springMVC为原型集成开发组件myBatis、Redis、MQ等等  之后会在添加的时候一一介绍
