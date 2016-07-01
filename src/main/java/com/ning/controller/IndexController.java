@@ -11,7 +11,7 @@ import com.ning.service.LoginService;
 import com.ning.service.UserService;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/index1")
 public class IndexController {
 
 	@Autowired
@@ -25,9 +25,7 @@ public class IndexController {
 		
 		System.out.println("init index controller");
 	}
-	
-	
-	@RequestMapping("/user")
+	@RequestMapping("/home")
 	public String home(Model model, HttpServletRequest request, String name, String password){
 		
 		System.out.println("welcome to -java !!订单订单");

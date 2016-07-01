@@ -33,4 +33,12 @@
 	<mvc:resources mapping="/json/**" location="/json/"/>
 	<mvc:resources location="/" mapping="/**"/>
 	
+	<!-- 配置mvc的拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.ning.common.interceptor.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 </beans>

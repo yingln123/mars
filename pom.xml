@@ -167,4 +167,38 @@
 		</dependency>
 		
   </dependencies>
+  
+  
+  
+  <!-- 公司仓库配置   -->
+  
+  
+	 <!-- 设置本地仓库 -->
+     <repositories>
+		<repository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://192.168.1.190:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>Nexus</name>
+			<url>http://192.168.1.190:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 </project>
