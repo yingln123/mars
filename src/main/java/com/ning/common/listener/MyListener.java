@@ -1,4 +1,4 @@
-package com.ning.common;
+package com.ning.common.listener;
 
 import java.util.Enumeration;
 
