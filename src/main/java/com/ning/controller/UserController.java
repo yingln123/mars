@@ -16,7 +16,7 @@ public class UserController {
 	public String login(HttpServletRequest request, Model model){
 		
 		HttpSession session = request.getSession();
-		
+
 		session.setAttribute("USER_TOKEN", "USER_TONKEN");
 		
 		return "/index";

@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>首页登录</title>
+<!-- demo scripts -->
+<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-	this is root index 
-	
-	<form action="user/login" >
-	
-		<input type="submit" value="登录" />
+<br><br><br><br><br><br><br>
+<!-- demo content -->
+<div class="loginform cf">
+	<form name="login" action="user/login" method="get" accept-charset="utf-8">
+		<ul>
+			<li><label for="usermail">Email</label>
+			<input type="email" name="usermail" placeholder="yourname@email.com" required>
+			</li>
+			<li><label for="password">Password</label>
+			<input type="password" name="password" placeholder="password" required></li>
+			<li><input type="submit" value="Login"> </li>
+		</ul>
 	</form>
+</div>
+<div style="text-align:center;clear:both">
+<p>适用浏览器：FireFox、Chrome、Safari、Opera、傲游、搜狗. 不支持IE8、360、世界之窗。</p>
+</div>
 </body>
+
 </html>

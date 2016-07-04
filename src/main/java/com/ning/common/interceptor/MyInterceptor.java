@@ -1,5 +1,7 @@
 package com.ning.common.interceptor;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,9 +60,6 @@ public class MyInterceptor implements HandlerInterceptor {
 	
 		System.out.println("MyInterceptor ==> preHandle");
 		
-		
-		String requestUrl = request.getRequestURI();
-		
 		//request.getContextPath()
 		
 		System.out.println("RequestURI ==> " + request.getRequestURI());
@@ -78,13 +77,26 @@ public class MyInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		
+		System.out.println("MyInterceptor ==> preHandle == > 查看session列表");
+		
 		HttpSession session = request.getSession();
+		
+		Enumeration<String> sessions = session.getAttributeNames();
+		
+		while(sessions.hasMoreElements()){
+			
+			String sessionName = sessions.nextElement();
+			
+			System.out.println("sessionName : " + sessionName + "  value: " + session.getAttribute(sessionName));
+		}
+		
+		System.out.println(session.getAttribute("USER_TOKEN"));
 		
 		if(session != null && session.getAttribute("USER_TOKEN") != null){
 			
-			
-			
 			return true;
+		}else{
+			response.sendRedirect(request.getContextPath());
 		}
 		
 		
