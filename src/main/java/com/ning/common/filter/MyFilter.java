@@ -1,6 +1,7 @@
 package com.ning.common.filter;
 
 import java.io.IOException;
+import java.util.Enumeration;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -8,6 +9,8 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet中的过滤器Filter是实现了javax.servlet.Filter接口的服务器端程序，主要的用途是过滤字符编码、做一些业务逻辑判断等。
@@ -29,6 +32,22 @@ public class MyFilter implements Filter {
 			FilterChain chain) throws IOException, ServletException {
 		System.out.println("来活了");
 
+		//HttpSession session = request.getServletContext().getses
+		
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
+		Enumeration<String> sessions = session.getAttributeNames();
+		
+		while(sessions.hasMoreElements()){
+			
+			String sessionName = sessions.nextElement();
+			
+			System.out.println("sessionName : " + sessionName + "  value: " + session.getAttribute(sessionName));
+		}
+		
+		session.setAttribute("demo", "demo");
+		
+		 chain.doFilter(request,response);  
 	}
 
 	@Override
