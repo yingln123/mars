@@ -39,6 +39,6 @@
 			<mvc:mapping path="/**"/>
 			<bean class="com.ning.common.interceptor.MyInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors>
+	</mvc:interceptors> 
 	
 </beans>

@@ -58,27 +58,40 @@ public class MyInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object object) throws Exception {
 	
-		System.out.println("MyInterceptor ==> preHandle");
 		
-		//request.getContextPath()
+				
+				
+			
+				
+		System.out.println("MyInterceptor ==> preHandle");		
 		
-		System.out.println("RequestURI ==> " + request.getRequestURI());
+		System.out.println("RequestURI ==> " + request.getRequestURI()); 	//RequestURI ==> /mars/css/style.css
 		
-		System.out.println("ContextPath ==> " + request.getContextPath());
+		System.out.println("ContextPath ==> " + request.getContextPath()); 	//ContextPath ==> /mars
 		
-		System.out.println("PathInfo ==> " + request.getPathInfo());
+		System.out.println("PathInfo ==> " + request.getPathInfo()); 		//PathInfo ==> null
 		
-		System.out.println("ServletPath ==> " + request.getServletPath());
+		System.out.println("ServletPath ==> " + request.getServletPath()); 	//ServletPath ==> /css/style.css
 		
-		System.out.println("RequestURL ==> " + request.getRequestURL());
+		System.out.println("RequestURL ==> " + request.getRequestURL());	//RequestURL ==> http://localhost:8080/mars/css/style.css
 		
-		
+		//不拦截根路径
 		if(request.getRequestURI().replaceAll("/", "").equals(request.getContextPath().replaceAll("/", ""))){
 			return true;
 		}
 		
-		System.out.println("MyInterceptor ==> preHandle == > 查看session列表");
+		//不拦截静态资源路径 可以实现配置化
+		if(request.getServletPath().toUpperCase().startsWith("/CSS")){
+			return true;
+		}
 		
+		//不拦截登陆路径
+		if(request.getServletPath().toUpperCase().startsWith("/USER/LOGIN")){
+			return true;
+		}
+		
+		System.out.println("MyInterceptor ==> preHandle == > 查看session列表");
+		//查看session个中的键值列表
 		HttpSession session = request.getSession();
 		
 		Enumeration<String> sessions = session.getAttributeNames();
@@ -91,11 +104,12 @@ public class MyInterceptor implements HandlerInterceptor {
 		}
 		
 		System.out.println(session.getAttribute("USER_TOKEN"));
-		
+		//判断登陆情况  
 		if(session != null && session.getAttribute("USER_TOKEN") != null){
 			
 			return true;
 		}else{
+			//跳转到首页
 			response.sendRedirect(request.getContextPath());
 		}
 		

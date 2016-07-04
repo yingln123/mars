@@ -25,6 +25,7 @@ public class MyListener implements ServletContextListener {
 		System.out.println("");
 		// 在整个web应用下面启动的时候做一些初始化的内容添加工作
 		ServletContext sc = event.getServletContext();
+		//遍历一下初始化参数 也就是我们在web.xml 中配置的context-param
 		Enumeration<String> initParameter = sc.getInitParameterNames();
 
 		while (initParameter.hasMoreElements()) {
@@ -32,8 +33,10 @@ public class MyListener implements ServletContextListener {
 			System.out.println("web init parameter name : " + parameterName
 					+ " ; value : " + sc.getInitParameter(parameterName));
 		}
-
+		
+		//向上下文中添加内容
 		sc.setAttribute("name", "abcd");
+		
 		System.out.println("应用监听器初始化工作完成...");
 
 	}

@@ -31,7 +31,7 @@ public class MyFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		System.out.println("来活了");
-
+/*
 		//HttpSession session = request.getServletContext().getses
 		
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -46,7 +46,7 @@ public class MyFilter implements Filter {
 		}
 		
 		session.setAttribute("demo", "demo");
-		
+		*/
 		 chain.doFilter(request,response);  
 	}
 
