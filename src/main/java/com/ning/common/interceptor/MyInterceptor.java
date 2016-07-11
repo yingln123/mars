@@ -58,11 +58,6 @@ public class MyInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object object) throws Exception {
 	
-		
-				
-				
-			
-				
 		System.out.println("MyInterceptor ==> preHandle");		
 		
 		System.out.println("RequestURI ==> " + request.getRequestURI()); 	//RequestURI ==> /mars/css/style.css
