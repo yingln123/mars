@@ -11,12 +11,10 @@ import java.lang.annotation.Target;
  * @author Mf-CX05
  *
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.PARAMETER ,ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface ActionControllerLog {
-	 /** 标题 */
-    String title()  default "";
     
     /** 动作的名称 */
     String action() default "";

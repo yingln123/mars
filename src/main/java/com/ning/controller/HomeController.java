@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ning.common.annotation.ActionControllerLog;
 import com.ning.service.LoginService;
 import com.ning.service.UserService;
 
@@ -28,6 +29,7 @@ public class HomeController {
 		
 		System.out.println("init index controller");
 	}
+	@ActionControllerLog(action="访问首页", isSaveRequestData=true)
 	@RequestMapping("/index0")
 	public String index0(Model model, HttpServletRequest request, String name, String password){
 		
