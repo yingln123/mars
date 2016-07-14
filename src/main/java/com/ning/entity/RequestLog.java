@@ -15,6 +15,8 @@ public class RequestLog implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
+	
 	/** 访问IP */
 	private String Ip;
 
@@ -79,6 +81,14 @@ public class RequestLog implements Serializable {
 
 	public void setActionName(String actionName) {
 		this.actionName = actionName;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

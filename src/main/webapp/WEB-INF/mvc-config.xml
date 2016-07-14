@@ -42,14 +42,6 @@
 	<mvc:resources mapping="/json/**" location="/json/" />
 	<mvc:resources location="/" mapping="/**" />
 
-	<!-- 配置mvc的拦截器 -->
-	<mvc:interceptors> 
-		<mvc:interceptor> 
-			<mvc:mapping path="/**"/> 
-			<bean class="com.ning.common.interceptor.MyInterceptor"></bean> 
-		</mvc:interceptor> 
-	</mvc:interceptors>
-
-<!-- 	<context:component-scan base-package="com.ning.common" /> -->
 	<aop:aspectj-autoproxy proxy-target-class="true" />
+	
 </beans>
