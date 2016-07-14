@@ -33,7 +33,7 @@
 	<!-- 定义扫描的包 -->
 	<context:component-scan base-package="com.ning.model" />
 	<context:component-scan base-package="com.ning.service" />	
-	<!-- <context:component-scan base-package="com.ning.common" />	 -->
+	<context:component-scan base-package="com.ning.common" />	
 	
 	
 </beans>

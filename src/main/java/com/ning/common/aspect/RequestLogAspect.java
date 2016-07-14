@@ -26,6 +26,8 @@ import com.ning.util.RequestUtil;
 /**
  * spring Aspect 实现自定义注解的日志记录
  * 网络资源：http://www.oschina.net/code/snippet_1159320_49213
+ * 由于这个方法是作用域controller上的方法，所以需要在spring-mvc的配置dispacther文件里添加aop支持	
+ * <aop:aspectj-autoproxy proxy-target-class="true" />
  */
 @Aspect
 @Component
@@ -38,18 +40,16 @@ public class RequestLogAspect {
 		System.out.println("init RequestLogAspect");
 	}
 	
-	 //Controller层切点
+	//切点
     @Pointcut("@annotation(com.ning.common.annotation.ActionControllerLog)")
     public void controllerAspect() { }  
     
     
     /**  
      * 前置通知 用于拦截Controller层记录用户的操作 
-     *
      * @param joinPoint 切点
      */
     @AfterReturning(pointcut="controllerAspect()")
-    //@AfterReturning("within(com.ning..*) && @annotation(com.ning.common.annotation.ActionControllerLog)")
     public  void doBefore(JoinPoint joinPoint) {
     	System.out.println("RequestLogAspect ==> doBefore");
         handleLog(joinPoint,null);
@@ -128,13 +128,10 @@ public class RequestLogAspect {
        return null;
    }
    
-   /*
+   /**
     * 获取注解中对方法的描述信息 用于Controller层注解
-    *
     * @param joinPoint 切点
-    *
     * @return 方法描述
-    *
     * @throws Exception
     */
    public static void getControllerMethodDescription(ActionControllerLog controllerLog, RequestLog requestLog, HttpServletRequest request) throws Exception {
@@ -151,7 +148,6 @@ public class RequestLogAspect {
    
    /**
     * 获取请求的参数，放到log中
-    *
     * @param userlogModel
     * @param request
     */
