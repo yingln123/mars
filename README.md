@@ -3,13 +3,13 @@
 以springMVC为原型集成开发组件myBatis、Redis、MQ等等  之后会在添加的时候一一介绍
 项目中以maven为构建工具，使用是本地需要安装maven并且配置好maven环境
 
-主分支项目包含内容：
-	借助用户登录使用到一下技术点
-	web原生过滤器：实现访问登录限制、对session的操作
-	web原生监听器：实现对web 启动配置参数的读取
-	springMVC的拦截器：基本配置和使用方式，实现访问登录限制和对session的操作
-	原生annotation：基本定义和使用
-	annotation配合springMVC实现记录系统访问日志功能配合（RequestLogAspect）：技术点annotation、springAOP（aspect）
+## 主分支项目包含内容：
+	借助用户登录使用到以下技术点
+	*   web原生过滤器：实现访问登录限制、对session的操作
+	*   web原生监听器：实现对web 启动配置参数的读取
+	*   springMVC的拦截器：基本配置和使用方式，实现访问登录限制和对session的操作
+	*   原生annotation：基本定义和使用
+	*   annotation配合springMVC实现记录系统访问日志功能配合（RequestLogAspect）：技术点annotation、springAOP（aspect）
 	
 	
 ## 另外简单介绍一下spring包的作用	
