@@ -35,5 +35,66 @@
 	<context:component-scan base-package="com.ning.service" />	
 	<context:component-scan base-package="com.ning.common" />	
 	
+	<!-- 读取JDBC配置文件 -->
+	<context:property-placeholder location="classpath*:jdbc.properties" ignore-unresolvable="true" />
+	
+	<!--创建jdbc数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<!-- useUnicode=true&characterEncoding=utf8 添加这个可以保证中文不乱吗  -->
+		<property name="url" value="${jdbc.url}" /> 
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+	</bean>
+	
+	<!-- Session工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 指定实体类的包路径 -->
+		<property name="typeAliasesPackage" value="com.ning.entity" />
+		<!-- 指定Mapper文件的路径  -->
+		<property name="mapperLocations" value="classpath*:com/ning/dao/mappers/*Mapper.xml" />  
+	</bean>
+	
+	<!-- 下面是配置声明式事务管理的 -->
+	<bean id="transactionManager"  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 配置事务的级别和隔离机制 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="query*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="load*" read-only="true"/>
+            <tx:method name="update*" rollback-for="Throwable" propagation="REQUIRED"/>
+            <tx:method name="insert*" rollback-for="Throwable" propagation="REQUIRED"/>
+            <tx:method name="create*" rollback-for="Throwable" propagation="REQUIRED"/>
+			<tx:method name="add*" rollback-for="Throwable"  propagation="REQUIRED"/>
+			<tx:method name="cancel*" rollback-for="Throwable"  propagation="REQUIRED"/>
+			<tx:method name="doAccounts" rollback-for="Throwable"  propagation="REQUIRED"/>
+			<tx:method name="check*" rollback-for="Throwable"  propagation="REQUIRED"/>
+            <tx:method name="*" rollback-for="Exception"/>
+        </tx:attributes>
+	</tx:advice>
+	
+	<!-- 事务AOP配置 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.ning.service..*.*(..))"  id="txPointcut1"/>
+	    <aop:advisor pointcut-ref="txPointcut1" advice-ref="txAdvice"/>
+	</aop:config>
+	
+	<!-- 自动扫描mappar-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.ning.dao"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
 	
 </beans>

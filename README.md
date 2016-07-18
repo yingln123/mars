@@ -5,4 +5,9 @@
 
 ## mybatis_demo1分支
 	这个分支主要是讲spring整合mybatis
+	添加日志打印(log4j)
 	SQL我们会记录在sql目录下
+	
+	
+	注：properties文件中文显示问题
+	   eclipse的.properties文件默认的编码方式是iso-8859-1，所以显示中文是有问题，我们修改开发环境的编码格式后需要对properties的显示格式也要做一下修改，Window --> preferences --> General -- Content Types 下面的  Text --> Java Properties File中的 .properties (locked)编码改为UTF-8 就阔以了

@@ -10,12 +10,17 @@
 	<project.build.sourceEncoding >utf-8 </project.build.sourceEncoding>               
 	<project.reporting.outputEncoding >utf-8 </project.reporting.outputEncoding>
 	<springframework.version >4.0.5.RELEASE </springframework.version>
-	<mybatis.version>3.1.1</mybatis.version>
+	<mybatis.version>3.2.7</mybatis.version>
 	<mysql-connector-java.version>5.1.32</mysql-connector-java.version>
 	<mybatis-spring.version>1.2.2</mybatis-spring.version>
 	
 	<!-- 阿里JSON解析器 -->
 	<com.alibaba.version>1.1.40</com.alibaba.version>
+	<!-- 阿里提供的连接池 -->
+	<druid.version>1.0.9</druid.version>
+	
+	<slf4j.version>1.7.5</slf4j.version>
+	<log4j.version>1.2.17</log4j.version>
   </properties>
   
   
@@ -166,6 +171,33 @@
 			<artifactId>fastjson</artifactId>
 			<version>${com.alibaba.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+		
+		<!-- slf4j begin -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- slf4j end -->
+		<!-- log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>  
+		
+		
   </dependencies>
   
   

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ning.dao.RequestLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ning.entity.RequestLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="action_name" property="actionName" jdbcType="VARCHAR" />
+    <result column="parameters" property="parameters" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, ip, url, action_name, parameters, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_request_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_request_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ning.entity.RequestLog" >
+    insert into t_request_log (id, user_id, ip, 
+      url, action_name, parameters, 
+      create_time)
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{ip,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{actionName,jdbcType=VARCHAR}, #{parameters,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ning.entity.RequestLog" >
+    insert into t_request_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="actionName != null" >
+        action_name,
+      </if>
+      <if test="parameters != null" >
+        parameters,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="actionName != null" >
+        #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameters != null" >
+        #{parameters,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ning.entity.RequestLog" >
+    update t_request_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="actionName != null" >
+        action_name = #{actionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parameters != null" >
+        parameters = #{parameters,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ning.entity.RequestLog" >
+    update t_request_log
+    set user_id = #{userId,jdbcType=BIGINT},
+      ip = #{ip,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      action_name = #{actionName,jdbcType=VARCHAR},
+      parameters = #{parameters,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="queryRequestLogByRequestLog" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_request_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+ </mapper>
