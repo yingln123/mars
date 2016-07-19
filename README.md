@@ -77,6 +77,8 @@ CGLIB是对ASM的封装，简化了ASM的操作，降低了ASM的使用门槛
 ## 下面是介绍各个分支的作用
 ### mybatis_demo1 
 	集成mybatis框架并且添加log4j日志打印[主要是打印SQL语句]
+### mybatis_demo2
+	mybatis配置多数据源、读写分离
 
 
 
