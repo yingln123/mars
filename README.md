@@ -7,6 +7,7 @@
 	这个分支主要是讲spring整合mybatis
 	添加日志打印(log4j)
 	SQL我们会记录在sql目录下
+	对mybatis修改配置，多数据源配置，读写分离
 	
 	
 	注：properties文件中文显示问题

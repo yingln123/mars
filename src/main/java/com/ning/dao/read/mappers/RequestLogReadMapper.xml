@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ning.dao.read.RequestLogReadMapper" >
+  <resultMap id="BaseResultMap" type="com.ning.entity.RequestLog" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="action_name" property="actionName" jdbcType="VARCHAR" />
+    <result column="parameters" property="parameters" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, user_id, ip, url, action_name, parameters, create_time
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_request_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="queryRequestLogByRequestLog" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_request_log
+ 	<where>
+ 		<if test="id != null">
+		    id = #{id,jdbcType=BIGINT}
+ 		</if>
+ 		<if test="userId != null">
+ 			user_id = #{userId, jdbcType=BIGINT}
+ 		</if>
+ 		<if test="ip != null">
+ 			ip = #{id, jdbcType=VARCHAR}
+ 		</if>
+ 	</where>
+  </select>
+ </mapper>

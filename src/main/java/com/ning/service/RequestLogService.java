@@ -6,14 +6,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ning.dao.RequestLogMapper;
+import com.alibaba.fastjson.JSONObject;
+import com.ning.dao.read.RequestLogReadMapper;
+import com.ning.dao.write.RequestLogWriteMapper;
 import com.ning.entity.RequestLog;
 
 @Service
 public class RequestLogService {
 	
 	@Autowired
-	private RequestLogMapper requestLogMapper;
+	private RequestLogWriteMapper requestLogWriteMapper;
+	
+	@Autowired
+	private RequestLogReadMapper requestLogReadMapper;
 	
 	/**
 	 * 添加系统日志
@@ -21,7 +26,16 @@ public class RequestLogService {
 	 */
 	public void addRequestLog(RequestLog requestLog){
 		
-		this.requestLogMapper.insertSelective(requestLog);
+		List<RequestLog> requestLogList = this.requestLogReadMapper.queryRequestLogByRequestLog(new RequestLog());
+		
+		if(requestLogList != null){
+			for(RequestLog rl : requestLogList){
+				System.out.println(JSONObject.toJSON(rl).toString());
+			}
+			
+		}
+		
+		this.requestLogWriteMapper.insertSelective(requestLog);
 		System.out.println("add request log success !!!");
 	}
 	
@@ -32,7 +46,7 @@ public class RequestLogService {
 	 */
 	public List<RequestLog> queryRequestLogByRequestLog(RequestLog requestLog){
 		
-		List<RequestLog> requestLogList = this.requestLogMapper.queryRequestLogByRequestLog(requestLog);
+		List<RequestLog> requestLogList = this.requestLogReadMapper.queryRequestLogByRequestLog(requestLog);
 		if(requestLogList == null){
 			requestLogList = new ArrayList<RequestLog>();
 		}

@@ -6,14 +6,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ning.dao.UserMapper;
+import com.ning.dao.read.UserReadMapper;
+import com.ning.dao.write.UserWriteMapper;
 import com.ning.entity.User;
 
 @Service
 public class UserService {
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserWriteMapper userWriteMapper;
+	
+	@Autowired
+	private UserReadMapper userReadMapper;
 	
 	public void addUser(String name, String password){
 		
@@ -26,7 +30,7 @@ public class UserService {
 	 */
 	public void addUser(User user){
 		
-		this.userMapper.insertSelective(user);
+		this.userWriteMapper.insertSelective(user);
 	}
 	
 	/**
@@ -36,7 +40,7 @@ public class UserService {
 	 */
 	public List<User> queryByUser(User user){
 		
-		List<User> userList = this.queryByUser(user);
+		List<User> userList = this.userReadMapper.queryUserByUser(user);
 		if(userList == null){
 			userList = new ArrayList<User>();
 		}
@@ -50,6 +54,6 @@ public class UserService {
 	 * @return
 	 */
 	public User queryUserById(Long userId){
-		return this.userMapper.selectByPrimaryKey(userId);
+		return this.userReadMapper.selectByPrimaryKey(userId);
 	}
 }
