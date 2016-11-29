@@ -16,6 +16,16 @@
 	集成mybatis框架并且添加log4j日志打印[主要是打印SQL语句]
 ### mybatis_demo2
 	mybatis配置多数据源、读写分离
+
+
+###
+Logback 分为三个模块：logback-core，logback-classic，logback-access
+
+logback-core 是核心；
+
+logback-classic 改善了 log4j，且自身实现了 SLF4J API，所以即使用 Logback 你仍然可以使用其他的日志实现，如原始的 Log4J，java.util.logging 等；
+
+logback-access 让你方便的访问日志信息，如通过 http 的方式
 -----
 
 
