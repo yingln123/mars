@@ -15,7 +15,7 @@
 	<mybatis-spring.version>1.2.2</mybatis-spring.version>
 	
 	<!-- 阿里JSON解析器 -->
-	<com.alibaba.version>1.1.40</com.alibaba.version>
+	<com.alibaba.version>1.2.25.sec10</com.alibaba.version>
   </properties>
   
   
