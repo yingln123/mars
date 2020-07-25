@@ -11,7 +11,7 @@
 	<project.reporting.outputEncoding >utf-8 </project.reporting.outputEncoding>
 	<springframework.version >4.0.5.RELEASE </springframework.version>
 	<mybatis.version>3.1.1</mybatis.version>
-	<mysql-connector-java.version>5.1.32</mysql-connector-java.version>
+	<mysql-connector-java.version>8.0.16</mysql-connector-java.version>
 	<mybatis-spring.version>1.2.2</mybatis-spring.version>
 	
 	<!-- 阿里JSON解析器 -->
