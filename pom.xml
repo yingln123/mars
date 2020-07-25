@@ -35,11 +35,6 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-asm</artifactId>
-			<version>${springframework.version}</version>
-		</dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
@@ -159,7 +154,13 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.2.1</version>
 		</dependency>
-		
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>javax.servlet-api</artifactId>
+		  <version>4.0.1</version>
+		  <scope>provided</scope>
+	  </dependency>
+
 		
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -174,11 +175,12 @@
   
   
 	 <!-- 设置本地仓库 -->
-     <repositories>
+	<repositories>
 		<repository>
-			<id>nexus</id>
-			<name>Nexus</name>
-			<url>http://192.168.1.190:8081/nexus/content/groups/public/</url>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -186,24 +188,15 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>repo1</id>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>nexus</id>
-			<name>Nexus</name>
-			<url>http://192.168.1.190:8081/nexus/content/groups/public/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-	
-	
-	
 	<build>
 		<plugins>  
             <plugin>  
